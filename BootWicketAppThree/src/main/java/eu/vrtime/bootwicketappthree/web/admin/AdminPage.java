@@ -6,6 +6,7 @@ import org.apache.wicket.authroles.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authroles.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ public class AdminPage extends WebPage {
 	private Panel TestPanel = new TestPanel(PANEL_ID);
 	private Panel current = customerPanel;
 	private AppAuthenticatedWebSession session;
+	private FeedbackPanel feedback;
 
 	public AdminPage() {
 		super();
@@ -44,6 +46,8 @@ public class AdminPage extends WebPage {
 		add(linkPanel);
 		add(current);
 		add(new UserInfoPanel("userInfoPanel"));
+		feedback= new FeedbackPanel("feedback");
+		add(feedback);
 
 	}
 

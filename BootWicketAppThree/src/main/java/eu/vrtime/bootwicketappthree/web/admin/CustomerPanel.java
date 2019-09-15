@@ -13,6 +13,7 @@ import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.NumberTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
@@ -27,6 +28,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.StringValidator;
 import org.springframework.util.Assert;
 
 import eu.vrtime.bootwicketappthree.model.AppUser;
@@ -54,7 +56,7 @@ public class CustomerPanel extends Panel {
 	private static final String LINK_CREATE_CUSTOMER = "createCustomerLink";
 	private static final String NAVIGATOR_ID = "navigator";
 
-	private FeedbackPanel feedbackPanel;
+//	private FeedbackPanel feedbackPanel;
 	private CustomerSpecification customerSpec = new CustomerSpecification();
 	private PageableListView<Customer> listView;
 	private ModalWindow createCustomerWindow;
@@ -77,7 +79,7 @@ public class CustomerPanel extends Panel {
 
 	public CustomerPanel(String id) {
 		super(id);
-		feedbackPanel = new FeedbackPanel(FEEDBACKPANEL_ID);
+//		feedbackPanel = new FeedbackPanel(FEEDBACKPANEL_ID);
 		createCustomerWindow = new ModalWindow("modalWindow");
 		editCustomerWindow = new ModalWindow("editCustomerWindow");
 
@@ -87,7 +89,7 @@ public class CustomerPanel extends Panel {
 	protected void onInitialize() {
 
 		super.onInitialize();
-		add(feedbackPanel);
+//		add(feedbackPanel);
 		add(createCustomerForm(FORM_ID));
 		listView = createListView(CUSTOMERLIST_ID);
 		add(listView);
@@ -107,14 +109,17 @@ public class CustomerPanel extends Panel {
 
 		TextField<Void> tfCustomerId = new TextField<>(FORM_CUSTOMERID_ID);
 		tfCustomerId.add(new AttributeModifier("placeholder", "123"));
+		tfCustomerId.add(new StringValidator(2,10));
 		form.add(tfCustomerId);
 
 		TextField<Void> tfFirstname = new TextField<>(FORM_FIRSTNAME_ID);
 		tfFirstname.add(new AttributeModifier("placeholder", "Tom"));
+		tfFirstname.add(new StringValidator(2, 10));
 		form.add(tfFirstname);
 
 		TextField<Void> tfLastname = new TextField<>(FORM_LASTNAME_ID);
 		tfLastname.add(new AttributeModifier("placeholder", "Turbo"));
+		tfLastname.add(new StringValidator(2,12));
 		form.add(tfLastname);
 
 		form.add(new Button(FORM_BUTTON_ID) {
@@ -123,7 +128,7 @@ public class CustomerPanel extends Panel {
 
 			@Override
 			public void onSubmit() {
-
+				success("Button click");
 				super.onSubmit();
 
 			}

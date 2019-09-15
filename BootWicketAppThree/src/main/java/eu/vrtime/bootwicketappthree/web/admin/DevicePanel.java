@@ -42,6 +42,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.StringValidator;
 
 import eu.vrtime.bootwicketappthree.model.Device;
 import eu.vrtime.bootwicketappthree.model.DeviceSpecification;
@@ -71,12 +72,6 @@ public class DevicePanel extends Panel {
 	private FeedbackPanel feedback;
 	private DataTable<Device, String> deviceTable;
 	private DeviceSpecification specification = new DeviceSpecification();
-
-
-//	private String deviceMac = new String();
-//	private String deviceSn = new String();
-//	private String deviceType = new String();
-
 	private String deviceMac = new String();
 	private String deviceSn = new String();
 	private String deviceType = new String();
@@ -107,9 +102,11 @@ public class DevicePanel extends Panel {
 
 		TextField<String> macField = new TextField<>(FORM_MAC_ID);
 		macField.add(new AttributeModifier("placeholder", "00:00:00:00:00:00"));
+		macField.add(new StringValidator(2, 12));
 		form.add(macField);
 
 		TextField<String> snField = new TextField<>(FORM_SN_ID);
+		snField.add(new StringValidator(2,12));
 		snField.add(new AttributeModifier("placeholder", "SN0123456789"));
 		form.add(snField);
 
