@@ -9,6 +9,7 @@ import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import eu.vrtime.bootwicketappthree.web.BreadCrumbPage;
+import eu.vrtime.bootwicketappthree.web.TestPage;
 import eu.vrtime.bootwicketappthree.web.admin.AdminPage;
 import eu.vrtime.bootwicketappthree.web.auth.AppAuthenticatedWebSession;
 import eu.vrtime.bootwicketappthree.web.login.LoginPage;
@@ -30,6 +31,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 		mountPage("/admin", AdminPage.class);
 		mountPage("/login", LoginPage.class);
 		mountPage("/breadcrumb", BreadCrumbPage.class);
+		mountPage("/test", TestPage.class);
 
 	}
 
